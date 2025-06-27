@@ -14,18 +14,20 @@ export default function AboutPage() {
       </h1>
       <div className="prose dark:prose-invert text-lg">
         <p>
-          <strong>Fintech Meetup Blog</strong> is a community-driven platform where we explore fintech topics from first principles.
-          Our goal is to break down complex financial technology concepts into simple, foundational ideas that anyone can understand and
+          <strong>Fintech Meetup Blog</strong> is a community-driven platform where we explore
+          fintech topics from first principles. Our goal is to break down complex financial
+          technology concepts into simple, foundational ideas that anyone can understand and
           discuss.
         </p>
         <p>
           The meetup and this blog were started by <strong>Satish Perala</strong> and{' '}
           <strong>Yuva K</strong>, passionate builders and first-principles thinkers in the fintech
-          space.
-          We believe in open discussion, learning by analogy, and sharing knowledge to help everyone in the community grow.
+          space. We believe in open discussion, learning by analogy, and sharing knowledge to help
+          everyone in the community grow.
         </p>
         <p>
-          Join us for our monthly meetups, read our blog posts, and be part of a growing group of fintech enthusiasts who love to learn and share from the ground up!
+          Join us for our monthly meetups, read our blog posts, and be part of a growing group of
+          fintech enthusiasts who love to learn and share from the ground up!
         </p>
       </div>
     </div>

@@ -104,7 +104,10 @@ export default function ListLayoutWithTags({
                       </Link>
                     </h2>
                     <div className="flex flex-wrap">
-                      {tags?.map((tag) => <Tag key={tag} text={tag} />)}
+                      {/* eslint-disable-next-line prettier/prettier */}
+                      {tags?.map((tag) => (
+                        <Tag key={tag} text={tag} />
+                      ))}
                     </div>
                   </div>
                   <div className="prose max-w-none text-gray-500 dark:text-gray-400">{summary}</div>

@@ -19,7 +19,7 @@ export default function AuthorLayout({ children, content }: Props) {
             About
           </h1>
         </div>
-        <div className="items-start space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
+        <div className="xl::gap-x-8:space-y-0 xl items-start space-y-2 xl:grid xl:grid-cols-3">
           <div className="flex flex-col items-center space-x-2 pt-8">
             {avatar && (
               <Image
