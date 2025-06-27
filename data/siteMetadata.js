@@ -1,29 +1,27 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Next.js Starter Blog',
-  author: 'Tails Azimuth',
-  headerTitle: 'TailwindBlog',
-  description: 'A blog created with Next.js and Tailwind.css',
+  title: 'Fintech Meetup Blog',
+  author: 'Fintech Meetup Group',
+  headerTitle: 'Fintech Meetup',
+  description: 'A blog for the Fintech Meetup Group, discussing fintech topics from first principles. Find our latest posts and upcoming event announcements here.',
   language: 'en-us',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',
-  siteRepo: 'https://github.com/timlrx/tailwind-nextjs-starter-blog',
+  siteUrl: 'https://fintech-meetup-blog.com',
+  siteRepo: '',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
-  mastodon: 'https://mastodon.social/@mastodonuser',
-  email: 'address@yoursite.com',
-  github: 'https://github.com',
-  x: 'https://twitter.com/x',
-  // twitter: 'https://twitter.com/Twitter',
-  facebook: 'https://facebook.com',
-  youtube: 'https://youtube.com',
-  linkedin: 'https://www.linkedin.com',
-  threads: 'https://www.threads.net',
-  instagram: 'https://www.instagram.com',
-  medium: 'https://medium.com',
-  bluesky: 'https://bsky.app/',
+  mastodon: '',
+  email: '',
+  github: '',
+  x: '',
+  facebook: '',
+  youtube: '',
+  linkedin: '',
+  threads: '',
+  instagram: '',
+  medium: '',
+  bluesky: '',
   locale: 'en-US',
-  // set to true if you want a navbar fixed to the top
   stickyNav: false,
   analytics: {
     // If you want to use an analytics provider you have to add it to the
@@ -83,20 +81,6 @@ const siteMetadata = {
       // This corresponds to the `data-lang="en"` in giscus's configurations
       lang: 'en',
     },
-  },
-  search: {
-    provider: 'kbar', // kbar or algolia
-    kbarConfig: {
-      searchDocumentsPath: `${process.env.BASE_PATH || ''}/search.json`, // path to load documents to search
-    },
-    // provider: 'algolia',
-    // algoliaConfig: {
-    //   // The application ID provided by Algolia
-    //   appId: 'R2IYF7ETH7',
-    //   // Public API key: it is safe to commit it
-    //   apiKey: '599cec31baffa4868cae4e79f180729b',
-    //   indexName: 'docsearch',
-    // },
   },
 }
 

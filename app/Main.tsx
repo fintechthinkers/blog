@@ -2,90 +2,129 @@ import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
-import NewsletterForm from 'pliny/ui/NewsletterForm'
 
 const MAX_DISPLAY = 5
 
+// Dummy events data for now
+const events = [
+  { date: '2024-07-10', title: 'Intro to DeFi', location: 'Online', link: '#' },
+  { date: '2024-08-05', title: 'Payments from First Principles', location: 'NYC', link: '#' },
+]
+
+// Dummy data for the next upcoming event
+const upcomingEvent = {
+  date: '2024-07-27',
+  title: 'Identity in Fintech: Beyond KYC',
+  location: 'Online',
+  link: '#',
+  description:
+    'Join us for a deep dive into how identity is managed in fintech, with real-world scenarios and open discussion.',
+}
+
+// Previous talks data
+const previousTalks = [
+  {
+    date: '2025-04-26',
+    speaker: 'Satish',
+    topic: 'KYC from First Principles',
+    blogSlug: 'first-principles-meetup-kyc',
+  },
+]
+
 export default function Home({ posts }) {
+  // Only show the user's blog
+  const userBlog = posts.find((post) => post.slug === 'first-principles-meetup-kyc')
+
   return (
     <>
-      <div className="divide-y divide-gray-200 dark:divide-gray-700">
-        <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-          <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 dark:text-gray-100">
-            Latest
-          </h1>
-          <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            {siteMetadata.description}
-          </p>
+      {/* Upcoming Event Section */}
+      <div className="bg-primary-100 dark:bg-primary-900 mb-12 rounded-lg p-6 shadow">
+        <h2 className="text-primary-700 dark:text-primary-300 mb-2 text-2xl font-bold">
+          Upcoming Event
+        </h2>
+        <div className="mb-1 text-lg font-semibold">{upcomingEvent.title}</div>
+        <div className="mb-1 text-gray-700 dark:text-gray-300">{upcomingEvent.description}</div>
+        <div className="mb-1 text-sm text-gray-500">
+          {upcomingEvent.date} &middot; {upcomingEvent.location}
         </div>
-        <ul className="divide-y divide-gray-200 dark:divide-gray-700">
-          {!posts.length && 'No posts found.'}
-          {posts.slice(0, MAX_DISPLAY).map((post) => {
-            const { slug, date, title, summary, tags } = post
-            return (
-              <li key={slug} className="py-12">
-                <article>
-                  <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
-                    <dl>
-                      <dt className="sr-only">Published on</dt>
-                      <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400">
-                        <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
-                      </dd>
-                    </dl>
-                    <div className="space-y-5 xl:col-span-3">
-                      <div className="space-y-6">
-                        <div>
-                          <h2 className="text-2xl leading-8 font-bold tracking-tight">
-                            <Link
-                              href={`/blog/${slug}`}
-                              className="text-gray-900 dark:text-gray-100"
-                            >
-                              {title}
-                            </Link>
-                          </h2>
-                          <div className="flex flex-wrap">
-                            {tags.map((tag) => (
-                              <Tag key={tag} text={tag} />
-                            ))}
-                          </div>
-                        </div>
-                        <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                          {summary}
-                        </div>
-                      </div>
-                      <div className="text-base leading-6 font-medium">
-                        <Link
-                          href={`/blog/${slug}`}
-                          className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                          aria-label={`Read more: "${title}"`}
-                        >
-                          Read more &rarr;
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </li>
-            )
-          })}
-        </ul>
+        <a
+          href={upcomingEvent.link}
+          className="bg-primary-600 hover:bg-primary-700 mt-2 inline-block rounded px-4 py-2 text-white"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Event Details
+        </a>
       </div>
-      {posts.length > MAX_DISPLAY && (
-        <div className="flex justify-end text-base leading-6 font-medium">
-          <Link
-            href="/blog"
-            className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-            aria-label="All posts"
-          >
-            All Posts &rarr;
-          </Link>
+
+      {/* Blog Section */}
+      <div className="divide-y divide-gray-200 dark:divide-gray-700">
+        <h1 className="mb-6 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl md:text-5xl dark:text-gray-100">
+          Fintech Meetup Blog
+        </h1>
+        <p className="mb-8 text-lg text-gray-500 dark:text-gray-400">{siteMetadata.description}</p>
+        {userBlog ? (
+          <div className="mb-12">
+            <div className="mb-2 text-base text-gray-500 dark:text-gray-400">
+              {formatDate(userBlog.date, siteMetadata.locale)}
+            </div>
+            <h2 className="mb-2 text-2xl font-bold">
+              <Link href={`/blog/${userBlog.slug}`} className="text-gray-900 dark:text-gray-100">
+                {userBlog.title}
+              </Link>
+            </h2>
+            <div className="mb-2 flex flex-wrap gap-2">
+              {userBlog.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="bg-primary-200 text-primary-800 dark:bg-primary-800 dark:text-primary-200 rounded px-2 py-1 text-xs font-semibold"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <div className="mb-2 text-gray-700 dark:text-gray-300">{userBlog.summary}</div>
+            <Link
+              href={`/blog/${userBlog.slug}`}
+              className="text-primary-500 hover:text-primary-700 dark:hover:text-primary-300 font-medium"
+              aria-label={`Read more: "${userBlog.title}"`}
+            >
+              Read more &rarr;
+            </Link>
+          </div>
+        ) : (
+          <div>No posts found.</div>
+        )}
+      </div>
+
+      {/* Previous Talks Table */}
+      <div className="mt-16">
+        <h2 className="mb-4 text-2xl font-bold">Previous Talks</h2>
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+            <thead>
+              <tr>
+                <th className="px-4 py-2 text-left">Date</th>
+                <th className="px-4 py-2 text-left">Speaker</th>
+                <th className="px-4 py-2 text-left">Topic</th>
+              </tr>
+            </thead>
+            <tbody>
+              {previousTalks.map((talk, idx) => (
+                <tr key={idx}>
+                  <td className="px-4 py-2">{talk.date}</td>
+                  <td className="px-4 py-2">{talk.speaker}</td>
+                  <td className="px-4 py-2">
+                    <Link href={`/blog/${talk.blogSlug}`} className="text-primary-500 underline">
+                      {talk.topic}
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-      )}
-      {siteMetadata.newsletter?.provider && (
-        <div className="flex items-center justify-center pt-4">
-          <NewsletterForm />
-        </div>
-      )}
+      </div>
     </>
   )
 }
